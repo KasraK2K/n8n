@@ -6,6 +6,7 @@ USER root
 ARG JS_EXTRA_PACKAGES
 
 RUN cd /opt/runners/task-runner-javascript && \
+    rm -rf /root/.local/share/pnpm node_modules && \
     if [ -n "${JS_EXTRA_PACKAGES}" ]; then pnpm add ${JS_EXTRA_PACKAGES}; fi
 
 COPY docker/runners/n8n-task-runners.json /etc/n8n-task-runners.json
